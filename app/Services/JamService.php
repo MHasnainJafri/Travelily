@@ -90,7 +90,11 @@ class JamService
         }
 
         // Check if a request already exists (using jam_invitations table)
-        $existingRequest = JamInvitation::where('jam_id', $jamId)->where('receiver_id', $userId)->where('status', 'pending')->first();
+        // When user sends join request, they are the sender, creator is the receiver
+        $existingRequest = JamInvitation::where('jam_id', $jamId)
+            ->where('sender_id', $userId)
+            ->where('status', 'pending')
+            ->first();
         if ($existingRequest) {
             throw new \Exception('Join request already sent');
         }
