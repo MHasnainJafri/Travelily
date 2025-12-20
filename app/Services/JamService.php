@@ -24,7 +24,6 @@ class JamService
             'num_persons' => $data['num_persons'] ?? 1,
         ]);
 
-        // Add the creator to the jam_users pivot table
         $jam->users()->attach(Auth::id(), [
             'role' => 'creator',
             'can_edit_jamboard' => true,
@@ -33,11 +32,9 @@ class JamService
             'can_add_destinations' => true,
         ]);
 
-        // Add participants if provided
         if (isset($data['participants'])) {
             foreach ($data['participants'] as $participantId) {
                 if ($participantId != Auth::id()) {
-                    // Avoid duplicating the creator
                     $jam->users()->attach($participantId, [
                         'role' => 'participant',
                         'can_edit_jamboard' => false,
@@ -48,6 +45,9 @@ class JamService
                 }
             }
         }
+
+        $chatService = app(ChatService::class);
+        $chatService->findOrCreateJamConversation($jam->id, Auth::id());
 
         return $jam->load('users');
     }

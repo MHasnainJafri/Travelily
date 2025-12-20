@@ -69,8 +69,12 @@ Route::prefix('v1')->group(function () {
 
         // Invitation routes
         Route::post('/jams/{jamId}/invitations', [JamInvitationController::class, 'sendInvitations']);
+        Route::get('/invitations/sent', [JamInvitationController::class, 'getSentRequests']);
+        Route::get('/invitations/received', [JamInvitationController::class, 'getReceivedRequests']);
+        Route::get('/invitations/{invitationId}/status', [JamInvitationController::class, 'getRequestStatus']);
         Route::post('/invitations/{invitationId}/accept', [JamInvitationController::class, 'acceptInvitation']);
         Route::post('/invitations/{invitationId}/reject', [JamInvitationController::class, 'rejectInvitation']);
+        Route::post('/invitations/{invitationId}/cancel', [JamInvitationController::class, 'cancelRequest']);
         // Trip Routes
 
         // Route::apiResource('trips', TripController::class);
@@ -134,7 +138,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/conversations/{conversationId}', [ChatController::class, 'show']);
             
             // Start conversations
-            Route::post('/conversations/personal/{friendId}', [ChatController::class, 'startPersonalChat']);
+            Route::post('/conversations/personal/{userId}', [ChatController::class, 'startPersonalChat']);
             Route::post('/conversations/jam/{jamId}', [ChatController::class, 'startJamChat']);
             
             // Messages

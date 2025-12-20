@@ -21,10 +21,39 @@ class ChatService
 {
     public function getConversationsForUser(int $userId, ?string $type = null, int $perPage = 20): LengthAwarePaginator
     {
+        $user = User::with('jams')->findOrFail($userId);
+        
+        if (!$type || $type === Conversation::TYPE_PERSONAL) {
+            $friends = $user->friends();
+            foreach ($friends as $friend) {
+                $conversation = Conversation::findPersonalConversation($userId, $friend->id);
+                if (!$conversation) {
+                    $this->findOrCreatePersonalConversation($userId, $friend->id);
+                }
+            }
+        }
+
+        if (!$type || $type === Conversation::TYPE_JAM) {
+            foreach ($user->jams as $jam) {
+                $conversation = Conversation::where('type', Conversation::TYPE_JAM)
+                    ->where('jam_id', $jam->id)
+                    ->first();
+                
+                if (!$conversation) {
+                    $this->findOrCreateJamConversation($jam->id, $userId);
+                } elseif (!$conversation->hasParticipant($userId)) {
+                    $conversation->participants()->attach($userId, [
+                        'role' => ConversationParticipant::ROLE_MEMBER,
+                        'joined_at' => now(),
+                    ]);
+                }
+            }
+        }
+
         $query = Conversation::whereHas('activeParticipants', function ($q) use ($userId) {
             $q->where('users.id', $userId);
         })
-        ->with(['latestMessage.sender', 'activeParticipants'])
+        ->with(['latestMessage.sender', 'activeParticipants', 'jam'])
         ->withCount(['messages as unread_count' => function ($q) use ($userId) {
             $q->where('sender_id', '!=', $userId)
               ->whereDoesntHave('reads', function ($rq) use ($userId) {
@@ -51,12 +80,12 @@ class ChatService
         return $this->getConversationsForUser($userId, Conversation::TYPE_JAM, $perPage);
     }
 
-    public function findOrCreatePersonalConversation(int $userId, int $friendId): Conversation
+    public function findOrCreatePersonalConversation(int $userId, int $otherUserId): Conversation
     {
-        $conversation = Conversation::findPersonalConversation($userId, $friendId);
+        $conversation = Conversation::findPersonalConversation($userId, $otherUserId);
 
         if (!$conversation) {
-            $conversation = DB::transaction(function () use ($userId, $friendId) {
+            $conversation = DB::transaction(function () use ($userId, $otherUserId) {
                 $conversation = Conversation::create([
                     'type' => Conversation::TYPE_PERSONAL,
                     'created_by' => $userId,
@@ -64,7 +93,7 @@ class ChatService
 
                 $conversation->participants()->attach([
                     $userId => ['role' => ConversationParticipant::ROLE_MEMBER, 'joined_at' => now()],
-                    $friendId => ['role' => ConversationParticipant::ROLE_MEMBER, 'joined_at' => now()],
+                    $otherUserId => ['role' => ConversationParticipant::ROLE_MEMBER, 'joined_at' => now()],
                 ]);
 
                 return $conversation;

@@ -52,4 +52,44 @@ class JamInvitationController extends Controller
             return response()->json(['error' => $e->getMessage()], 400);
         }
     }
+
+    public function getSentRequests()
+    {
+        try {
+            $requests = $this->jamInvitationService->getSentRequests();
+            return new JamInvitationCollection($requests);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    public function getReceivedRequests()
+    {
+        try {
+            $requests = $this->jamInvitationService->getReceivedRequests();
+            return new JamInvitationCollection($requests);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    public function getRequestStatus($invitationId)
+    {
+        try {
+            $invitation = $this->jamInvitationService->getRequestStatus($invitationId);
+            return new JamInvitationResource($invitation);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 404);
+        }
+    }
+
+    public function cancelRequest($invitationId)
+    {
+        try {
+            $this->jamInvitationService->cancelRequest($invitationId);
+            return response()->json(['message' => 'Request cancelled successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
 }

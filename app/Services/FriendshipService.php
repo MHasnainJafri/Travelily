@@ -157,6 +157,10 @@ class FriendshipService
             ->firstOrFail();
             
         $friendship->update(['status' => Friendship::STATUS_ACCEPTED]);
+        
+        $chatService = app(ChatService::class);
+        $chatService->findOrCreatePersonalConversation($userId, $senderId);
+        
         return $friendship;
     }
 

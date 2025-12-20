@@ -68,15 +68,15 @@ class ChatController extends Controller
         );
     }
 
-    public function startPersonalChat(Request $request, int $friendId): JsonResponse
+    public function startPersonalChat(Request $request, int $userId): JsonResponse
     {
-        $userId = auth()->id();
+        $authUserId = auth()->id();
 
-        if ($userId === $friendId) {
+        if ($authUserId === $userId) {
             return API::error('Cannot start a conversation with yourself', 400);
         }
 
-        $conversation = $this->chatService->findOrCreatePersonalConversation($userId, $friendId);
+        $conversation = $this->chatService->findOrCreatePersonalConversation($authUserId, $userId);
 
         return API::success(
             new ConversationResource($conversation),
