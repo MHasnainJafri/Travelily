@@ -6,6 +6,25 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class JamResource extends JsonResource
 {
+    protected function isMember()
+    {
+        $user = auth()->user();
+        
+        if (!$user) {
+            return false;
+        }
+        
+        if ($this->creator_id === $user->id) {
+            return true;
+        }
+        
+        if ($this->relationLoaded('users')) {
+            return $this->users->contains('id', $user->id);
+        }
+        
+        return $this->resource->users()->where('user_id', $user->id)->exists();
+    }
+
     public function toArray($request)
     {
         return [
@@ -21,6 +40,7 @@ class JamResource extends JsonResource
             'num_guests' => $this->num_guests,
             'image' => $this->image,
             'num_persons' => $this->num_persons,
+            'is_member' => $this->isMember(),
             'creator' => new UserResource($this->whenLoaded('creator')),
             'users' => UserResource::collection($this->whenLoaded('users')),
             'flights' => JamFlightResource::collection($this->whenLoaded('flights')),

@@ -52,7 +52,9 @@ class UserService
     public function userslist()
     {
         // $userId = $id ?? Auth::id();
-        return $user = User::with(['profile', 'receivedReviews.reviewer', 'media'])->latest()->paginate();
+return User::with(['profile', 'receivedReviews.reviewer', 'media'])
+    ->latest('updated_at')
+    ->paginate();
 
         // return [
         //     'user_profile' => [
