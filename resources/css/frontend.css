@@ -1,0 +1,299 @@
+/* Frontend Styles for Travelilly Website */
+
+/* ===== CSS Variables ===== */
+:root {
+    --primary-50: #A785C0;
+    --primary-60: #8C65AD;
+    --primary-70: #6F4596;
+    --primary-80: #52287D;
+    --secondary-50: #E499AC;
+    --secondary-60: #D97D95;
+    --secondary-70: #CA5F7B;
+    --tertiary-60: #8163A8;
+    --gradient-primary: linear-gradient(135deg, #6F4596 0%, #CA5F7B 100%);
+    --gradient-hero: linear-gradient(135deg, #F5F0F7 0%, #FDF2F4 50%, #F3EEF7 100%);
+}
+
+/* ===== Base Styles ===== */
+.frontend-body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Gradient Utilities ===== */
+.gradient-hero {
+    background: var(--gradient-hero);
+}
+
+.gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gradient-bg {
+    background: var(--gradient-primary);
+}
+
+/* ===== Button Styles ===== */
+.btn-primary {
+    background: linear-gradient(135deg, #6F4596 0%, #8C65AD 100%);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #52287D 0%, #6F4596 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px rgba(111, 69, 150, 0.3);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #D97D95 0%, #E499AC 100%);
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #CA5F7B 0%, #D97D95 100%);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    border: 2px solid white;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Card Styles ===== */
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(111, 69, 150, 0.15);
+}
+
+.feature-icon {
+    background: linear-gradient(135deg, #F5F0F7 0%, #FDF2F4 100%);
+}
+
+.testimonial-card {
+    background: linear-gradient(135deg, #ffffff 0%, #F5F0F7 100%);
+}
+
+/* ===== Destination Card ===== */
+.destination-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.5rem;
+}
+
+.destination-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+    z-index: 1;
+}
+
+.destination-card img {
+    transition: transform 0.5s ease;
+}
+
+.destination-card:hover img {
+    transform: scale(1.1);
+}
+
+/* ===== Navigation ===== */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* ===== Stat Number ===== */
+.stat-number {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ===== Blob Decorations ===== */
+.blob-1 {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(167, 133, 192, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    top: -200px;
+    right: -200px;
+    z-index: 0;
+}
+
+.blob-2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(228, 153, 172, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    bottom: -100px;
+    left: -100px;
+    z-index: 0;
+}
+
+/* ===== App Download Section ===== */
+.app-download-section {
+    background: linear-gradient(135deg, #6F4596 0%, #52287D 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.app-download-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+}
+
+.app-store-btn {
+    background: #000;
+    transition: all 0.3s ease;
+}
+
+.app-store-btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+}
+
+.play-store-btn {
+    background: #000;
+    transition: all 0.3s ease;
+}
+
+.play-store-btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+}
+
+/* ===== Phone Mockup ===== */
+.phone-mockup {
+    position: relative;
+    transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+    transition: transform 0.5s ease;
+}
+
+.phone-mockup:hover {
+    transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+}
+
+.phone-frame {
+    background: linear-gradient(145deg, #2d2d2d 0%, #1a1a1a 100%);
+    border-radius: 40px;
+    padding: 12px;
+    box-shadow: 
+        0 50px 100px -20px rgba(0, 0, 0, 0.5),
+        0 30px 60px -30px rgba(0, 0, 0, 0.5),
+        inset 0 -2px 6px rgba(255, 255, 255, 0.1);
+}
+
+.phone-screen {
+    border-radius: 32px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.phone-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 28px;
+    background: #1a1a1a;
+    border-radius: 0 0 20px 20px;
+    z-index: 10;
+}
+
+/* ===== Floating Animation ===== */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.float-animation {
+    animation: float 6s ease-in-out infinite;
+}
+
+.float-animation-delayed {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+/* ===== QR Code Section ===== */
+.qr-code-container {
+    background: white;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Footer ===== */
+.footer-link {
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: white;
+}
+
+.social-icon {
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background: #6F4596;
+    transform: translateY(-2px);
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 768px) {
+    .blob-1, .blob-2 {
+        display: none;
+    }
+    
+    .phone-mockup {
+        transform: none;
+    }
+    
+    .phone-mockup:hover {
+        transform: none;
+    }
+}

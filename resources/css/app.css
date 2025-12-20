@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary Colors - Purple scale from your palette */
+  --color-primary-0: #FFFFFF;
+  --color-primary-10: #F5F0F7;
+  --color-primary-20: #E6D9ED;
+  --color-primary-30: #D4BFE0;
+  --color-primary-40: #BFA3D1;
+  --color-primary-50: #A785C0;
+  --color-primary-60: #8C65AD;
+  --color-primary-70: #6F4596;
+  --color-primary-80: #52287D;
+  --color-primary-88: #3D1B62;
+  --color-primary-90: #2E1249;
+  --color-primary-95: #1F0A30;
+  --color-primary-99: #0F0518;
+  --color-primary-100: #000000;
+
+  /* Secondary Colors - Pink/Rose scale */
+  --color-secondary-0: #FFFFFF;
+  --color-secondary-10: #FDF2F4;
+  --color-secondary-20: #F9E0E5;
+  --color-secondary-30: #F4CBD4;
+  --color-secondary-40: #EDB3C1;
+  --color-secondary-50: #E499AC;
+  --color-secondary-60: #D97D95;
+  --color-secondary-70: #CA5F7B;
+  --color-secondary-80: #B84060;
+  --color-secondary-88: #9A2D4A;
+  --color-secondary-90: #7D2039;
+  --color-secondary-95: #5E1529;
+  --color-secondary-99: #3F0B19;
+  --color-secondary-100: #000000;
+
+  /* Tertiary Colors - Deep Purple */
+  --color-tertiary-0: #FFFFFF;
+  --color-tertiary-10: #F3EEF7;
+  --color-tertiary-20: #E2D6EC;
+  --color-tertiary-30: #CEBCDE;
+  --color-tertiary-40: #B7A0CE;
+  --color-tertiary-50: #9D82BC;
+  --color-tertiary-60: #8163A8;
+  --color-tertiary-70: #644491;
+  --color-tertiary-80: #472778;
+  --color-tertiary-88: #351C5D;
+  --color-tertiary-90: #261344;
+  --color-tertiary-95: #180B2C;
+  --color-tertiary-99: #0A0415;
+  --color-tertiary-100: #000000;
+
+  /* Error Colors - Red scale */
+  --color-error-0: #FFFFFF;
+  --color-error-10: #FEF2F2;
+  --color-error-20: #FDE8E8;
+  --color-error-30: #FECACA;
+  --color-error-40: #FCA5A5;
+  --color-error-50: #F87171;
+  --color-error-60: #EF4444;
+  --color-error-70: #DC2626;
+  --color-error-80: #B91C1C;
+  --color-error-88: #991B1B;
+  --color-error-90: #7F1D1D;
+  --color-error-95: #5C1515;
+  --color-error-99: #3B0D0D;
+  --color-error-100: #000000;
+
+  /* Neutral Colors - Gray scale */
+  --color-neutral-0: #FFFFFF;
+  --color-neutral-10: #F9FAFB;
+  --color-neutral-20: #F3F4F6;
+  --color-neutral-30: #E5E7EB;
+  --color-neutral-40: #D1D5DB;
+  --color-neutral-50: #9CA3AF;
+  --color-neutral-60: #6B7280;
+  --color-neutral-70: #4B5563;
+  --color-neutral-80: #374151;
+  --color-neutral-88: #1F2937;
+  --color-neutral-90: #111827;
+  --color-neutral-95: #0D1117;
+  --color-neutral-99: #06080C;
+  --color-neutral-100: #000000;
+
+  /* Neutral Variant - Slightly tinted gray */
+  --color-neutral-variant-0: #FFFFFF;
+  --color-neutral-variant-10: #F8F7FA;
+  --color-neutral-variant-20: #F0EEF4;
+  --color-neutral-variant-30: #E3E0EA;
+  --color-neutral-variant-40: #D3CFDD;
+  --color-neutral-variant-50: #A9A4B5;
+  --color-neutral-variant-60: #7E788C;
+  --color-neutral-variant-70: #5A5466;
+  --color-neutral-variant-80: #3D3847;
+  --color-neutral-variant-88: #2A2632;
+  --color-neutral-variant-90: #1D1A23;
+  --color-neutral-variant-95: #110F15;
+  --color-neutral-variant-99: #060508;
+  --color-neutral-variant-100: #000000;
+
+  /* Semantic Colors */
+  --color-background: var(--color-neutral-0);
+  --color-foreground: var(--color-neutral-90);
+  --color-card: var(--color-neutral-0);
+  --color-card-foreground: var(--color-neutral-90);
+  --color-popover: var(--color-neutral-0);
+  --color-popover-foreground: var(--color-neutral-90);
+  --color-primary: var(--color-primary-70);
+  --color-primary-foreground: var(--color-neutral-0);
+  --color-secondary: var(--color-secondary-60);
+  --color-secondary-foreground: var(--color-neutral-0);
+  --color-muted: var(--color-neutral-20);
+  --color-muted-foreground: var(--color-neutral-60);
+  --color-accent: var(--color-tertiary-60);
+  --color-accent-foreground: var(--color-neutral-0);
+  --color-destructive: var(--color-error-60);
+  --color-destructive-foreground: var(--color-neutral-0);
+  --color-border: var(--color-neutral-30);
+  --color-input: var(--color-neutral-30);
+  --color-ring: var(--color-primary-60);
+
+  /* Sidebar Colors */
+  --color-sidebar: var(--color-neutral-10);
+  --color-sidebar-foreground: var(--color-neutral-80);
+  --color-sidebar-primary: var(--color-primary-70);
+  --color-sidebar-primary-foreground: var(--color-neutral-0);
+  --color-sidebar-accent: var(--color-primary-20);
+  --color-sidebar-accent-foreground: var(--color-primary-80);
+  --color-sidebar-border: var(--color-neutral-30);
+  --color-sidebar-ring: var(--color-primary-60);
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+
+  /* Font Family */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Dark theme overrides */
+.dark {
+  --color-background: var(--color-neutral-90);
+  --color-foreground: var(--color-neutral-10);
+  --color-card: var(--color-neutral-88);
+  --color-card-foreground: var(--color-neutral-10);
+  --color-popover: var(--color-neutral-88);
+  --color-popover-foreground: var(--color-neutral-10);
+  --color-primary: var(--color-primary-50);
+  --color-primary-foreground: var(--color-neutral-100);
+  --color-secondary: var(--color-secondary-50);
+  --color-secondary-foreground: var(--color-neutral-100);
+  --color-muted: var(--color-neutral-80);
+  --color-muted-foreground: var(--color-neutral-50);
+  --color-accent: var(--color-tertiary-50);
+  --color-accent-foreground: var(--color-neutral-100);
+  --color-destructive: var(--color-error-50);
+  --color-destructive-foreground: var(--color-neutral-100);
+  --color-border: var(--color-neutral-70);
+  --color-input: var(--color-neutral-70);
+  --color-ring: var(--color-primary-50);
+  --color-sidebar: var(--color-neutral-95);
+  --color-sidebar-foreground: var(--color-neutral-30);
+  --color-sidebar-primary: var(--color-primary-50);
+  --color-sidebar-primary-foreground: var(--color-neutral-100);
+  --color-sidebar-accent: var(--color-primary-80);
+  --color-sidebar-accent-foreground: var(--color-primary-20);
+  --color-sidebar-border: var(--color-neutral-70);
+  --color-sidebar-ring: var(--color-primary-50);
+}
+
+/* Base styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}

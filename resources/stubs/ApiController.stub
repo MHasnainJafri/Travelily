@@ -1,0 +1,90 @@
+<?php
+namespace App\Http\Controllers\Api{{namespace}};
+
+use App\Services{{namespace}}\{{name}}Service;
+use App\Models\{{model}};
+use Illuminate\Http\JsonResponse;
+use Mhasnainjafri\RestApiKit\Http\Controllers\RestController;
+use App\Http\Requests{{namespace}}\{{name}}Request;
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+
+class {{name}}Controller extends RestController
+{
+    public function __construct(private {{name}}Service $service) {}
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function index(Request $request): JsonResponse
+    {
+        $filters = $request->query('filters', []);
+        $sortBy = $request->query('sort_by', 'id');
+        $sortOrder = $request->query('sort_order', 'asc');
+        $perPage = $request->query('per_page', 10);
+
+        $data = $this->service->list($filters, $sortBy, $sortOrder, $perPage);
+
+        return $this->response($data, __('messages.show', ['model' => '{{model}}']));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param {{name}}Request $request
+     * @return JsonResponse
+     */
+     
+    public function store({{name}}Request $request): JsonResponse
+    {
+        $validated = $request->validated();
+        $record = $this->service->create($validated);
+
+        return $this->response($record, __('messages.store', ['model' => '{{model}}']), 201);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param {{model}} ${{modelVariable}}
+     * @return JsonResponse
+     */
+    public function show({{model}} ${{modelVariable}}): JsonResponse
+    {
+        $record = $this->service->show(${{modelVariable}});
+
+        return $this->response($record, __('messages.show', ['model' => '{{model}}']));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param {{name}}Request $request
+     * @param {{model}} ${{modelVariable}}
+     * @return JsonResponse
+     */
+    public function update({{name}}Request $request, {{model}} ${{modelVariable}}): JsonResponse
+    {
+        $validated = $request->validated();
+        $record = $this->service->update(${{modelVariable}}, $validated);
+
+        return $this->response($record, __('messages.update', ['model' => '{{model}}']));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param {{model}} ${{modelVariable}}
+     * @return JsonResponse
+     */
+    public function destroy({{model}} ${{modelVariable}}): JsonResponse
+    {
+        $this->service->delete(${{modelVariable}});
+
+        return $this->response([], __('messages.delete', ['model' => '{{model}}']));
+    }
+
+}

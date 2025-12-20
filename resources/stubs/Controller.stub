@@ -1,0 +1,134 @@
+<?php
+namespace App\Http\Controllers{{namespace}};
+
+use App\Services{{namespace}}\{{name}}Service;
+use App\Models\{{model}};
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use \Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests{{namespace}}\{{name}}Request;
+
+
+class {{name}}Controller extends Controller
+{
+    
+
+    public function __construct(private {{name}}Service $service,private string $view='{{name}}'){}
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @return JsonResponse|View
+     */
+    public function index(Request $request): JsonResponse|View
+    {
+        $filters = $request->query('filters', []);
+        $sortBy = $request->query('sort_by', 'id');
+        $sortOrder = $request->query('sort_order', 'asc');
+        $perPage = $request->query('per_page', 10);
+
+        $data = $this->service->list($filters, $sortBy, $sortOrder, $perPage);
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'data' => $data,
+            ]);
+        }
+
+        return view("{$this->view}.index", compact('data'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return JsonResponse|RedirectResponse
+     */
+    public function store({{name}}Request $request): JsonResponse|RedirectResponse
+    {
+        $validated = $request->validate([
+            // Validation rules go here
+        ]);
+
+        $record = $this->service->create($validated);
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'data' => $record,
+                'message' => '{{model}} created successfully.',
+            ], 201);
+        }
+
+        return redirect()->route("{$this->view}.index")->with('success', '{{model}} created successfully.');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param {{model}} ${{modelVariable}}
+     * @return JsonResponse|View
+     */
+    public function show({{model}} ${{modelVariable}}): JsonResponse|View
+    {
+        $record = $this->service->show(${{modelVariable}});
+
+        if (request()->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'data' => $record,
+            ]);
+        }
+
+        return view("{$this->view}.show", compact('record'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @param {{model}} ${{modelVariable}}
+     * @return JsonResponse|RedirectResponse
+     */
+    public function update(Request $request, {{model}} ${{modelVariable}}): JsonResponse|RedirectResponse
+    {
+        $validated = $request->validate([
+            // Validation rules go here
+        ]);
+
+        $record = $this->service->update(${{modelVariable}}, $validated);
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'data' => $record,
+                'message' => '{{model}} updated successfully.',
+            ]);
+        }
+
+        return redirect()->back()->with('success', '{{model}} updated successfully.');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param {{model}} ${{modelVariable}}
+     * @return JsonResponse|RedirectResponse
+     */
+    public function destroy({{model}} ${{modelVariable}}): JsonResponse|RedirectResponse
+    {
+        $this->service->delete(${{modelVariable}});
+
+        if (request()->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => trans('messages.delete', ['model' => '{{model}}']),
+            ]);
+        }
+
+        return redirect()->back()->with('success', trans('{{model}}.created', ['model' => '{{model}}']));
+    }
+}
