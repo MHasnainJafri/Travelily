@@ -22,7 +22,9 @@ class UserService
                 'following' => $user->following,
                 'trips_completed' => $user->trips_completed,
                 'rating' => $user->profile->rating ?? 0,
-                'location'=>$user->location
+                'location'=>$user->location,
+                'bio'=>$user->bio,
+                
             ],
             'reviews' => $user->receivedReviews->map(function ($review) {
                 return [

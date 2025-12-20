@@ -1,0 +1,5009 @@
+{
+	"info": {
+		"_postman_id": "0bfc3d48-cce5-4f5d-8858-5cadc9cbf4aa",
+		"name": "Travelily API",
+		"description": "API collection for Travelily application.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38724030"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Registration",
+					"item": [
+						{
+							"name": "1. Register",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "new@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "profile_picture",
+											"type": "file",
+											"src": "/C:/Users/mhasn/Downloads/image (2).jpg"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "new",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "guide",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "traveled-places",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "visited_places",
+											"value": " [\n        {\n            \"place_name\": \"Paris\",\n            \"address\": \"\",\n            \"latitude\": 90,\n            \"longitude\": 90,\n            \"rank\": 1,\n            \"google_place_id\": \"ChIJD7fiBh9u5kcRYJSMaMOCCwQ\"\n        },\n        {\n            \"place_name\": \"Paris\",\n            \"address\": \"\",\n             \"latitude\": 90,\n            \"longitude\": 90,\n            \"rank\": 1,\n            \"google_place_id\": \"ChIJD7fiBh9u5kcRYJSMaMOCCwQ\"\n        }\n    ]",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/user/traveled-places",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"user",
+										"traveled-places"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "recommended-places",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"visited_places\": [\r\n        {\r\n            \"place_name\": \"Paris\",\r\n            \"address\": \"\",\r\n            \"latitude\": 90,\r\n            \"longitude\": 90,\r\n            \"rank\": 1,\r\n            \"google_place_id\": \"ChIJD7fiBh9u5kcRYJSMaMOCCwQ\"\r\n        },\r\n        {\r\n            \"place_name\": \"Paris\",\r\n            \"address\": \"\",\r\n            \"latitude\": 90,\r\n            \"longitude\": 90,\r\n            \"rank\": 1,\r\n            \"google_place_id\": \"ChIJD7fiBh9u5kcRYJSMaMOCCwQ\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/user/recommended-places",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"user",
+										"recommended-places"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update profile",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "bio",
+											"value": "facebooks",
+											"type": "text"
+										},
+										{
+											"key": "facebook",
+											"value": "https://www.google.com",
+											"type": "text"
+										},
+										{
+											"key": "linkedin",
+											"value": "https://www.google.com",
+											"type": "text"
+										},
+										{
+											"key": "tiktok",
+											"value": "https://www.google.com",
+											"type": "text"
+										},
+										{
+											"key": "short_video",
+											"type": "file",
+											"src": "/C:/Users/hasnain/Downloads/logo.jpg",
+											"disabled": true
+										},
+										{
+											"key": "travel_activities_ids",
+											"value": "[1]",
+											"type": "text"
+										},
+										{
+											"key": "buddy_interests_ids",
+											"value": "[1]",
+											"type": "text"
+										},
+										{
+											"key": "travel_with_options_ids",
+											"value": "[1]",
+											"type": "text"
+										},
+										{
+											"key": "my_interests_ids",
+											"value": "[1]",
+											"type": "text"
+										},
+										{
+											"key": "profile_photo",
+											"type": "file",
+											"src": "/C:/Users/hasnain/Downloads/Screenshot 2025-12-03 171203.png"
+										},
+										{
+											"key": "name",
+											"value": "hasnain",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "jaylonlipshutz",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/profile/update",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"profile",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2. send-otp",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "test123a12@gmail.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/send-otp",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"send-otp"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3. verify-otp",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "new@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "otp",
+											"value": "4664",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/verify-otp",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"verify-otp"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "travel-activity",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/RestApiKit/travel-activity",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"RestApiKit",
+										"travel-activity"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "interest",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/RestApiKit/interest",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"RestApiKit",
+										"interest"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "travel_with_options",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/RestApiKit/travel-with-option",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"RestApiKit",
+										"travel-with-option"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "social-login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"   var jsonData = pm.response.json();\r",
+									"   console.log(jsonData.token)\r",
+									"    pm.collectionVariables.set(\"token\",jsonData.token);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"provider\": \"google\",   //facebook , google , apple\r\n    \"access_token\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/social-login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"social-login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"   var jsonData = pm.response.json();\r",
+									"   console.log(jsonData.token)\r",
+									"    pm.collectionVariables.set(\"token\",jsonData.token);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"pwaelchi@example.org\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/RestApiKit/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"RestApiKit",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forget 1 : sendOtp",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"test@example.com\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/RestApiKit/sendOtp",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"RestApiKit",
+								"sendOtp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forget 2 : verifyOtp",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"otp\": \"620902\",\r\n    \"email\": \"test@example.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/RestApiKit/verifyOtp",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"RestApiKit",
+								"verifyOtp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"test@example.com\",\r\n    \"password\": \"password\",\r\n    \"confirm_password\": \"password\",\r\n    \"otp\":\"620902\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/RestApiKit/changePassword",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"RestApiKit",
+								"changePassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"John Doe\", \"email\": \"john.doe@example.com\", \"password\": \"securepassword\"}"
+						},
+						"url": {
+							"raw": "{{base_url}}/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userslist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/userslist",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"userslist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/users/{{user_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users/gallery",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "images[]",
+									"type": "file",
+									"src": "/C:/Users/mhasn/Downloads/trees-nature-road-scenery-aerial-view-2k-wallpaper-uhdpaper.com-103@5@a.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/users/gallery",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"gallery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update location",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"John Doe Updated\", \"email\": \"john.doe.updated@example.com\",\"_method\":\"PUT\"}"
+						},
+						"url": {
+							"raw": "{{base_url}}/user/{{id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateLocation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lat\":31,\r\n    \"lng\":32,\r\n    \"accuracy\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/updateLocation",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"updateLocation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/user/{{id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Store Users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\"name\": \"John Doe\", \"email\": \"john.doe@example.com\"}, {\"name\": \"Jane Doe\", \"email\": \"jane.doe@example.com\"}]"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/bulk",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"bulk"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "delete card",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "stripe_payment_method_id",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/cards/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cards",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cards",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/cards",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "plans",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "stripe_payment_method_id",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/plans",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"plans"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "plans",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/plans",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"plans"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-length",
+									"value": "325"
+								},
+								{
+									"key": "content-encoding",
+									"value": "br"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding,User-Agent"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 27 May 2025 07:19:00 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"plan\": [\n        {\n            \"id\": 1,\n            \"name\": \"Basic Plan\",\n            \"stripe_price_id\": \"price_1R4cfBFWLM2dH4jV2Do6loEH\",\n            \"price\": \"1000\",\n            \"currency\": \"usd\",\n            \"description\": \"Basic subscription plan\",\n            \"trial_days\": \"7\",\n            \"created_at\": \"2025-05-27T07:17:46.000000Z\",\n            \"updated_at\": \"2025-05-27T07:17:46.000000Z\",\n            \"features\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Access to Basic Features\",\n                    \"description\": null,\n                    \"created_at\": \"2025-05-27T07:17:46.000000Z\",\n                    \"updated_at\": \"2025-05-27T07:17:46.000000Z\",\n                    \"pivot\": {\n                        \"plan_id\": \"1\",\n                        \"feature_id\": \"1\"\n                    }\n                },\n                {\n                    \"id\": 2,\n                    \"name\": \"Email Support\",\n                    \"description\": null,\n                    \"created_at\": \"2025-05-27T07:17:46.000000Z\",\n                    \"updated_at\": \"2025-05-27T07:17:46.000000Z\",\n                    \"pivot\": {\n                        \"plan_id\": \"1\",\n                        \"feature_id\": \"2\"\n                    }\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Premium Plan\",\n            \"stripe_price_id\": \"price_1QebBrFWLM2dH4jVbiJYoxTy\",\n            \"price\": \"2000\",\n            \"currency\": \"usd\",\n            \"description\": \"Premium subscription plan\",\n            \"trial_days\": \"14\",\n            \"created_at\": \"2025-05-27T07:17:46.000000Z\",\n            \"updated_at\": \"2025-05-27T07:17:46.000000Z\",\n            \"features\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Access to Basic Features\",\n                    \"description\": null,\n                    \"created_at\": \"2025-05-27T07:17:46.000000Z\",\n                    \"updated_at\": \"2025-05-27T07:17:46.000000Z\",\n                    \"pivot\": {\n                        \"plan_id\": \"2\",\n                        \"feature_id\": \"1\"\n                    }\n                },\n                {\n                    \"id\": 2,\n                    \"name\": \"Email Support\",\n                    \"description\": null,\n                    \"created_at\": \"2025-05-27T07:17:46.000000Z\",\n                    \"updated_at\": \"2025-05-27T07:17:46.000000Z\",\n                    \"pivot\": {\n                        \"plan_id\": \"2\",\n                        \"feature_id\": \"2\"\n                    }\n                },\n                {\n                    \"id\": 3,\n                    \"name\": \"Priority Support\",\n                    \"description\": null,\n                    \"created_at\": \"2025-05-27T07:17:46.000000Z\",\n                    \"updated_at\": \"2025-05-27T07:17:46.000000Z\",\n                    \"pivot\": {\n                        \"plan_id\": \"2\",\n                        \"feature_id\": \"3\"\n                    }\n                },\n                {\n                    \"id\": 4,\n                    \"name\": \"Advanced Analytics\",\n                    \"description\": null,\n                    \"created_at\": \"2025-05-27T07:17:46.000000Z\",\n                    \"updated_at\": \"2025-05-27T07:17:46.000000Z\",\n                    \"pivot\": {\n                        \"plan_id\": \"2\",\n                        \"feature_id\": \"4\"\n                    }\n                }\n            ]\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "subscribe",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "card_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "plan_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/subscribe",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subscribe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "subscription",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/subscription",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subscription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add_card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "stripe_payment_method_id",
+									"value": "pm_1RMSfFFWLM2dH4jVxReTaEt6",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/cards",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Get All Posts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/posts?per_page=10&page=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Post",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/posts/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "This is a new post!",
+									"type": "text"
+								},
+								{
+									"key": "media",
+									"type": "file",
+									"src": [
+										"/C:/Users/mhasn/Downloads/SampleVideo_1280x720_1mb.mp4",
+										"/C:/Users/mhasn/Downloads/sample.jpg"
+									]
+								},
+								{
+									"key": "tagged_users",
+									"value": "[1, 2]",
+									"type": "text"
+								},
+								{
+									"key": "location_name",
+									"value": "Central Park",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "40.785091",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "-73.968285",
+									"type": "text"
+								},
+								{
+									"key": "visibility",
+									"value": "public",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "active",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/posts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Post",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "Updated post content",
+									"type": "text"
+								},
+								{
+									"key": "tagged_users",
+									"value": "[1, 3]",
+									"type": "text"
+								},
+								{
+									"key": "visibility",
+									"value": "public",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "active",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/posts/13",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/posts/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Get All Comments for Post",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/posts/1/comments?per_page=10&page=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"1",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Comment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/comments/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"post_id\": 1, \"parent_id\": null, \"content\": \"This is a new comment\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/comments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Comment",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"content\": \"Updated comment content\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/comments/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/comments/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Stories",
+			"item": [
+				{
+					"name": "Get Active Stories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/stories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"stories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Story",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "This is a new story!",
+									"type": "text"
+								},
+								{
+									"key": "media",
+									"type": "file",
+									"src": "/path/to/sample.jpg"
+								},
+								{
+									"key": "visibility",
+									"value": "public",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "active",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/stories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"stories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Story",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "Updated story content",
+									"type": "text"
+								},
+								{
+									"key": "visibility",
+									"value": "friends",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "inactive",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/stories/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"stories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Story",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/stories/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"stories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Friendships",
+			"item": [
+				{
+					"name": "Send friend/follow request (auto-detects type)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/friendships/send/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"friendships",
+								"send",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get requests you sent",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/friendships/requests/sent",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"friendships",
+								"requests",
+								"sent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get followers list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/friendships/followers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"friendships",
+								"followers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get following list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/friendships/following",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"friendships",
+								"following"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check relationship with a user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/friendships/status/{{userId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"friendships",
+								"status",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get following list Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/friendships/following",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"friendships",
+								"following"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get following list Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/friendships/following",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"friendships",
+								"following"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get pending requests received Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/friendships/requests",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"friendships",
+								"requests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept Friend Request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/friendships/accept/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"friendships",
+								"accept",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reject Friend Request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/friendships/reject/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"friendships",
+								"reject",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel sent request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/friendships/cancel/{{userId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"friendships",
+								"cancel",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unfollow",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/friendships/unfollow/{{userId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"friendships",
+								"unfollow",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Direct follow (for hosts/guides) Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/friendships/follow/{{userId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"friendships",
+								"follow",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove friend Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/friendships/unfriend/{{userId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"friendships",
+								"unfriend",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Friends",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/friendships",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"friendships"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/search?query=john",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"search"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "john",
+									"description": "Search query for users"
+								}
+							]
+						},
+						"description": "Search for users by name, email, or username"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Jam Invitations",
+			"item": [
+				{
+					"name": "Send Invitations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_ids\": [2, 3, 4]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/jams/{{jam_id}}/invitations",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jams",
+								"{{jam_id}}",
+								"invitations"
+							]
+						},
+						"description": "Send invitations to users to join a Jamboard"
+					},
+					"response": []
+				},
+				{
+					"name": "Accept Invitation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/invitations/{{invitation_id}}/accept",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"invitations",
+								"{{invitation_id}}",
+								"accept"
+							],
+							"variable": [
+								{
+									"key": "invitation_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Accept a Jamboard invitation"
+					},
+					"response": []
+				},
+				{
+					"name": "Reject Invitation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/invitations/{{invitation_id}}/reject",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"invitations",
+								"{{invitation_id}}",
+								"reject"
+							],
+							"variable": [
+								{
+									"key": "invitation_id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Reject a Jamboard invitation"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Jamboard Lock",
+			"item": [
+				{
+					"name": "Lock Jamboard",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/jams/{{jam_id}}/lock",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jams",
+								"{{jam_id}}",
+								"lock"
+							]
+						},
+						"description": "Locks a Jamboard to prevent further modifications."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task Management",
+			"item": [
+				{
+					"name": "Create Task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Book Flight Tickets\",\n  \"description\": \"Ensure all travelers have their tickets\",\n  \"status\": \"pending\",\n  \"due_date\": \"2025-05-20\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/jams/{{jam_id}}/tasks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jams",
+								"{{jam_id}}",
+								"tasks"
+							]
+						},
+						"description": "Creates a new task for a Jamboard."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"in_progress\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/tasks/{{task_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"{{task_id}}"
+							]
+						},
+						"description": "Updates an existing task."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/tasks/{{task_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"{{task_id}}"
+							]
+						},
+						"description": "Deletes a task from a Jamboard."
+					},
+					"response": []
+				},
+				{
+					"name": "Assign User to Task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 84\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/tasks/{{task_id}}/assign",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"{{task_id}}",
+								"assign"
+							]
+						},
+						"description": "Assigns a user to a task."
+					},
+					"response": []
+				},
+				{
+					"name": "Remove User from Task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 2\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/tasks/{{task_id}}/unassign",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"{{task_id}}",
+								"unassign"
+							]
+						},
+						"description": "Removes a user from a task."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Map View",
+			"item": [
+				{
+					"name": "Get Jamboard Map Data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/jams/{{jam_id}}/map",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jams",
+								"{{jam_id}}",
+								"map"
+							]
+						},
+						"description": "Fetches location data for a Jamboard to display on a map."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bucket List",
+			"item": [
+				{
+					"name": "Get All Bucket Lists",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/bucket-lists",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bucket-lists"
+							]
+						},
+						"description": "Fetches all bucket lists for the authenticated user."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific Bucket List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/bucket-lists/{{bucket_list_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bucket-lists",
+								"{{bucket_list_id}}"
+							]
+						},
+						"description": "Fetches a specific bucket list by ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Bucket List",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Paris Dream",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Places to visit in Paris",
+									"type": "text"
+								},
+								{
+									"key": "images[]",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/bucket-lists",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bucket-lists"
+							]
+						},
+						"description": "Creates a new bucket list with optional images."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Bucket List",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Paris Dream Updated",
+									"type": "text"
+								},
+								{
+									"key": "images[]",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/bucket-lists/{{bucket_list_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bucket-lists",
+								"{{bucket_list_id}}"
+							]
+						},
+						"description": "Updates an existing bucket list with optional new images."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Bucket List",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{api_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/bucket-lists/{{bucket_list_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bucket-lists",
+								"{{bucket_list_id}}"
+							]
+						},
+						"description": "Deletes a bucket list."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trips",
+			"item": [
+				{
+					"name": "Jamboard Management",
+					"item": [
+						{
+							"name": "Create Jamboard",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{api_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Summer Adventure\",\n  \"destination\": \"New York\",\n  \"start_date\": \"2025-06-01\",\n  \"end_date\": \"2025-06-10\",\n  \"budget_min\": 500,\n  \"budget_max\": 1000,\n  \"num_guests\": 5\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/jams",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jams"
+									]
+								},
+								"description": "Creates a new Jamboard."
+							},
+							"response": []
+						},
+						{
+							"name": "Create Jamboard",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{api_token}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "jamboard_name",
+											"value": " Summer Adventure",
+											"type": "text"
+										},
+										{
+											"key": "destination",
+											"value": " New York",
+											"type": "text"
+										},
+										{
+											"key": "looking_for",
+											"value": " host",
+											"type": "text"
+										},
+										{
+											"key": "start_date",
+											"value": " 2025-06-01",
+											"type": "text"
+										},
+										{
+											"key": "start_from",
+											"value": " 2025-06-01",
+											"type": "text"
+										},
+										{
+											"key": "end_date",
+											"value": " 2025-06-10",
+											"type": "text"
+										},
+										{
+											"key": "budget_min",
+											"value": " 500",
+											"type": "text"
+										},
+										{
+											"key": "budget_max",
+											"value": " 1000",
+											"type": "text"
+										},
+										{
+											"key": "num_guests",
+											"value": " 5",
+											"type": "text"
+										},
+										{
+											"key": "destination_details",
+											"value": "{\"dest\":{\"lat\":33.7077281,\"lon\":73.0497919},\"start\":{\"lat\":33.5211113,\"lon\":73.1585192}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/trips",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"trips"
+									]
+								},
+								"description": "Creates a new Jamboard."
+							},
+							"response": []
+						},
+						{
+							"name": "All Jams",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{api_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jams",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jams"
+									]
+								},
+								"description": "Fetches all Jamboards for the authenticated user."
+							},
+							"response": []
+						},
+						{
+							"name": "Get My Jamboards",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{api_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jams/my",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jams",
+										"my"
+									]
+								},
+								"description": "Fetches all Jamboards for the authenticated user."
+							},
+							"response": []
+						},
+						{
+							"name": "Search Jamboards",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{api_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jams/search?query=Summer Adventure",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jams",
+										"search"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Summer Adventure"
+										}
+									]
+								},
+								"description": "Searches for Jamboards by query."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Jamboard Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{api_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jams/{{jam_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jams",
+										"{{jam_id}}"
+									]
+								},
+								"description": "Fetches details of a specific Jamboard."
+							},
+							"response": []
+						},
+						{
+							"name": "Join Jamboard",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{api_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jams/{{jam_id}}/join",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jams",
+										"{{jam_id}}",
+										"join"
+									]
+								},
+								"description": "Allows a user to join a Jamboard."
+							},
+							"response": []
+						},
+						{
+							"name": "Lock Jamboard",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{api_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jams/{{jam_id}}/lock",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jams",
+										"{{jam_id}}",
+										"lock"
+									]
+								},
+								"description": "Locks a Jamboard to prevent further modifications."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Jamboard Additions",
+					"item": [
+						{
+							"name": "Add Flight",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"from\": \"New York\",\n  \"to\": \"Los Angeles\",\n  \"date\": \"2025-06-01\",\n  \"departure_time\": \"10:00\",\n  \"arrival_time\": \"13:00\",\n  \"mode_of_transportation\": \"airplane\"\n}\n"
+								},
+								"url": {
+									"raw": "{{base_url}}/jams/{{jam_id}}/flights",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jams",
+										"{{jam_id}}",
+										"flights"
+									]
+								},
+								"description": "Adds a flight to a Jamboard."
+							},
+							"response": []
+						},
+						{
+							"name": "Add Accommodation",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"Hotel Stay\",\n  \"comments\": \"3-star hotel\",\n  \"location\": \"Los Angeles\",\n  \"type\": \"hotel\",\n  \"time\": \"14:00\",\n  \"date\": \"2025-06-01\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/jams/{{jam_id}}/accommodations",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jams",
+										"{{jam_id}}",
+										"accommodations"
+									]
+								},
+								"description": "Adds an accommodation to a Jamboard."
+							},
+							"response": []
+						},
+						{
+							"name": "Add Activity",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"City Tour\",\n  \"comments\": \"Guided tour\",\n  \"location\": \"Los Angeles\",\n  \"category\": \"backpacking\", //backpacking,tent camping,dry rooftop camping,canoe camping,camping,bonfire,trekking,music,concert,sky diving\n  \"time\": \"10:00\",\n  \"date\": \"2025-06-02\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/jams/{{jam_id}}/activities",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jams",
+										"{{jam_id}}",
+										"activities"
+									]
+								},
+								"description": "Adds an activity to a Jamboard."
+							},
+							"response": []
+						},
+						{
+							"name": "Add Experience",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"Beach Day\",\n  \"description\": \"Relax at the beach\",\n  \"location\": \"Santa Monica\",\n  \"category\": \"backpacking\",   //backpacking,tent camping,dry rooftop camping,canoe camping,camping,bonfire,trekking,music,concert,sky diving\n  \"time\": \"12:00\",\n  \"date\": \"2025-06-03\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/jams/{{jam_id}}/experiences",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jams",
+										"{{jam_id}}",
+										"experiences"
+									]
+								},
+								"description": "Adds an experience to a Jamboard."
+							},
+							"response": []
+						},
+						{
+							"name": "Add Guide",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{api_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"user_id\": 2,\n  \"role\": \"guide\",\n  \"contact_info\": \"guide@example.com\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/jams/{{jam_id}}/guides",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jams",
+										"{{jam_id}}",
+										"guides"
+									]
+								},
+								"description": "Assigns a guide to a Jamboard."
+							},
+							"response": []
+						},
+						{
+							"name": "Update User Permissions",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{api_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"can_edit_jamboard\": true,\n  \"can_add_travelers\": false,\n  \"can_edit_budget\": true,\n  \"can_add_destinations\": false\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/jams/{{jam_id}}/users/{{user_id}}/permissions",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jams",
+										"{{jam_id}}",
+										"users",
+										"{{user_id}}",
+										"permissions"
+									]
+								},
+								"description": "Updates permissions for a user in a Jamboard."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Task Management",
+					"item": [
+						{
+							"name": "Create Task",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{api_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"Book Flight Tickets\",\n  \"description\": \"Ensure all travelers have their tickets\",\n  \"status\": \"pending\",\n  \"jam_id\":2,\n  \"due_date\": \"2025-05-20\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/jams/{{jam_id}}/tasks",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jams",
+										"{{jam_id}}",
+										"tasks"
+									]
+								},
+								"description": "Creates a new task for a Jamboard."
+							},
+							"response": []
+						},
+						{
+							"name": "Update Task",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{api_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"status\": \"in_progress\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/tasks/{{task_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks",
+										"{{task_id}}"
+									]
+								},
+								"description": "Updates an existing task."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Task",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{api_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/tasks/{{task_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks",
+										"{{task_id}}"
+									]
+								},
+								"description": "Deletes a task from a Jamboard."
+							},
+							"response": []
+						},
+						{
+							"name": "Assign User to Task",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{api_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"user_id\": 84\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/tasks/{{task_id}}/assign",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks",
+										"{{task_id}}",
+										"assign"
+									]
+								},
+								"description": "Assigns a user to a task."
+							},
+							"response": []
+						},
+						{
+							"name": "Remove User from Task",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{api_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"user_id\": 2\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/tasks/{{task_id}}/unassign",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasks",
+										"{{task_id}}",
+										"unassign"
+									]
+								},
+								"description": "Removes a user from a task."
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Google Calendar",
+			"item": [
+				{
+					"name": "Google Calendar Auth",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/google-calendar/auth",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"google-calendar",
+								"auth"
+							]
+						},
+						"description": "Redirect to Google OAuth for calendar authorization"
+					},
+					"response": []
+				},
+				{
+					"name": "Google Calendar Callback",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/google-callback?code=AUTH_CODE",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"google-callback"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "AUTH_CODE",
+									"description": "Authorization code from Google"
+								}
+							]
+						},
+						"description": "Handle Google OAuth callback"
+					},
+					"response": []
+				},
+				{
+					"name": "Sync Jam to Calendar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/jams/{{jam_id}}/sync-calendar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jams",
+								"{{jam_id}}",
+								"sync-calendar"
+							]
+						},
+						"description": "Sync Jamboard events to Google Calendar"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Calendar Events",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/calendar/events",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"calendar",
+								"events"
+							]
+						},
+						"description": "Get user's calendar events from Google Calendar"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bookings",
+			"item": [
+				{
+					"name": "Get All Bookings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/bookings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bookings"
+							]
+						},
+						"description": "Fetches all bookings for the authenticated user."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Booking",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/bookings/{{booking_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}"
+							]
+						},
+						"description": "Get details of a specific booking"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Booking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"jam_id\": 1,\n  \"booking_type\": \"accommodation\",\n  \"details\": \"Hotel booking details\",\n  \"booking_date\": \"2025-06-01\",\n  \"status\": \"pending\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/bookings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bookings"
+							]
+						},
+						"description": "Create a new booking"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Booking",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"details\": \"Updated booking details\",\n  \"status\": \"confirmed\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/bookings/{{booking_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}"
+							]
+						},
+						"description": "Update an existing booking"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Booking",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/bookings/{{booking_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}"
+							]
+						},
+						"description": "Delete a booking"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Booking Status",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"confirmed\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/bookings/{{booking_id}}/status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bookings",
+								"{{booking_id}}",
+								"status"
+							]
+						},
+						"description": "Updates the status of a booking (e.g., confirmed, canceled)."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/api/get-users/admin",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"get-users",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-jam",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://travelilly_new.test/admin/api/get-jam",
+							"protocol": "http",
+							"host": [
+								"travelilly_new",
+								"test"
+							],
+							"path": [
+								"admin",
+								"api",
+								"get-jam"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-advertising",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://travelilly_new.test/admin/api/get-advertising",
+							"protocol": "http",
+							"host": [
+								"travelilly_new",
+								"test"
+							],
+							"path": [
+								"admin",
+								"api",
+								"get-advertising"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-posts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://travelilly_new.test/admin/api/get-posts",
+							"protocol": "http",
+							"host": [
+								"travelilly_new",
+								"test"
+							],
+							"path": [
+								"admin",
+								"api",
+								"get-posts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chat",
+			"item": [
+				{
+					"name": "Conversations",
+					"item": [
+						{
+							"name": "Get All Conversations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/chat/conversations?type=&per_page=20",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "",
+											"description": "Filter by type: 'personal' or 'jam' (leave empty for all)"
+										},
+										{
+											"key": "per_page",
+											"value": "20",
+											"description": "Number of conversations per page"
+										}
+									]
+								},
+								"description": "Get all conversations for the authenticated user. Can filter by type (personal/jam)."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Personal Conversations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/personal?per_page=20",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										"personal"
+									],
+									"query": [
+										{
+											"key": "per_page",
+											"value": "20"
+										}
+									]
+								},
+								"description": "Get only personal (1-on-1) conversations with friends."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Jam Conversations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/jam?per_page=20",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										"jam"
+									],
+									"query": [
+										{
+											"key": "per_page",
+											"value": "20"
+										}
+									]
+								},
+								"description": "Get only Jam group conversations."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Conversation Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/:conversationId",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										":conversationId"
+									],
+									"variable": [
+										{
+											"key": "conversationId",
+											"value": "1",
+											"description": "Conversation ID"
+										}
+									]
+								},
+								"description": "Get details of a specific conversation including participants."
+							},
+							"response": []
+						},
+						{
+							"name": "Start Personal Chat",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/personal/:friendId",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										"personal",
+										":friendId"
+									],
+									"variable": [
+										{
+											"key": "friendId",
+											"value": "48",
+											"description": "Friend's user ID to start chat with"
+										}
+									]
+								},
+								"description": "Start or get existing personal conversation with a friend."
+							},
+							"response": []
+						},
+						{
+							"name": "Start/Join Jam Chat",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/jam/:jamId",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										"jam",
+										":jamId"
+									],
+									"variable": [
+										{
+											"key": "jamId",
+											"value": "1",
+											"description": "Jam ID to start/join group chat"
+										}
+									]
+								},
+								"description": "Start or join a Jam group conversation. All Jam members are automatically added as participants."
+							},
+							"response": []
+						},
+						{
+							"name": "Mute/Unmute Conversation",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/:conversationId/mute",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										":conversationId",
+										"mute"
+									],
+									"variable": [
+										{
+											"key": "conversationId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Toggle mute status for a conversation. Muted conversations won't send push notifications."
+							},
+							"response": []
+						},
+						{
+							"name": "Pin/Unpin Conversation",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/:conversationId/pin",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										":conversationId",
+										"pin"
+									],
+									"variable": [
+										{
+											"key": "conversationId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Toggle pin status for a conversation. Pinned conversations appear at the top."
+							},
+							"response": []
+						},
+						{
+							"name": "Leave Conversation",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/:conversationId/leave",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										":conversationId",
+										"leave"
+									],
+									"variable": [
+										{
+											"key": "conversationId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Leave a group conversation. Only applicable for Jam group chats."
+							},
+							"response": []
+						},
+						{
+							"name": "Add Participant to Conversation",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": 3\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/:conversationId/participants",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										":conversationId",
+										"participants"
+									],
+									"variable": [
+										{
+											"key": "conversationId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Add a new participant to a group conversation."
+							},
+							"response": []
+						}
+					],
+					"description": "Endpoints for managing conversations (personal and Jam group chats)"
+				},
+				{
+					"name": "Messages",
+					"item": [
+						{
+							"name": "Get Messages",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/:conversationId/messages?per_page=50&before_id=",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										":conversationId",
+										"messages"
+									],
+									"query": [
+										{
+											"key": "per_page",
+											"value": "50",
+											"description": "Number of messages per page"
+										},
+										{
+											"key": "before_id",
+											"value": "",
+											"description": "Load messages before this message ID (for pagination)"
+										}
+									],
+									"variable": [
+										{
+											"key": "conversationId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Get messages in a conversation. Use before_id for infinite scroll pagination."
+							},
+							"response": []
+						},
+						{
+							"name": "Send Text Message",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"text\",\n    \"body\": \"Hey, long time no see! 👋\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/:conversationId/messages",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										":conversationId",
+										"messages"
+									],
+									"variable": [
+										{
+											"key": "conversationId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Send a text message to a conversation."
+							},
+							"response": []
+						},
+						{
+							"name": "Send Image Message",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"image\",\n    \"body\": \"Check out this view!\",\n    \"metadata\": {\n        \"url\": \"https://example.com/uploads/chat/images/photo.jpg\",\n        \"filename\": \"vacation_photo.jpg\",\n        \"filesize\": 1024000,\n        \"mimetype\": \"image/jpeg\",\n        \"width\": 1920,\n        \"height\": 1080\n    }\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/:conversationId/messages",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										":conversationId",
+										"messages"
+									],
+									"variable": [
+										{
+											"key": "conversationId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Send an image message. First upload the image using /chat/upload endpoint, then send the metadata."
+							},
+							"response": []
+						},
+						{
+							"name": "Send Video Message",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"video\",\n    \"body\": \"Video from the trip\",\n    \"metadata\": {\n        \"url\": \"https://example.com/uploads/chat/videos/video.mp4\",\n        \"filename\": \"trip_video.mp4\",\n        \"filesize\": 15000000,\n        \"mimetype\": \"video/mp4\",\n        \"duration\": 45,\n        \"thumbnail\": \"https://example.com/uploads/chat/videos/video_thumb.jpg\"\n    }\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/:conversationId/messages",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										":conversationId",
+										"messages"
+									],
+									"variable": [
+										{
+											"key": "conversationId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Send a video message with duration and optional thumbnail."
+							},
+							"response": []
+						},
+						{
+							"name": "Send Audio/Voice Message",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"audio\",\n    \"metadata\": {\n        \"url\": \"https://example.com/uploads/chat/voice-notes/audio.m4a\",\n        \"filename\": \"voice_note.m4a\",\n        \"filesize\": 250000,\n        \"mimetype\": \"audio/mp4\",\n        \"duration\": 15,\n        \"is_voice_note\": true\n    }\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/:conversationId/messages",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										":conversationId",
+										"messages"
+									],
+									"variable": [
+										{
+											"key": "conversationId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Send an audio or voice note message."
+							},
+							"response": []
+						},
+						{
+							"name": "Send File Message",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"file\",\n    \"body\": \"Here's the itinerary\",\n    \"metadata\": {\n        \"url\": \"https://example.com/uploads/chat/files/itinerary.pdf\",\n        \"filename\": \"Trip_Itinerary.pdf\",\n        \"filesize\": 500000,\n        \"mimetype\": \"application/pdf\"\n    }\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/:conversationId/messages",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										":conversationId",
+										"messages"
+									],
+									"variable": [
+										{
+											"key": "conversationId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Send a file attachment (PDF, DOC, XLS, etc.)."
+							},
+							"response": []
+						},
+						{
+							"name": "Send Location Message",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"location\",\n    \"body\": \"I'm here!\",\n    \"metadata\": {\n        \"latitude\": 48.8584,\n        \"longitude\": 2.2945,\n        \"address\": \"Eiffel Tower, Champ de Mars, 5 Av. Anatole France, 75007 Paris, France\"\n    }\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/:conversationId/messages",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										":conversationId",
+										"messages"
+									],
+									"variable": [
+										{
+											"key": "conversationId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Send a location message with coordinates and optional address."
+							},
+							"response": []
+						},
+						{
+							"name": "Reply to Message",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"text\",\n    \"body\": \"Yes, I'll be there!\",\n    \"reply_to_id\": 5\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/:conversationId/messages",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										":conversationId",
+										"messages"
+									],
+									"variable": [
+										{
+											"key": "conversationId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Reply to a specific message using reply_to_id."
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Message",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"body\": \"Updated message content\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/messages/:messageId",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"messages",
+										":messageId"
+									],
+									"variable": [
+										{
+											"key": "messageId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Edit a message you sent. Only the sender can edit their own messages."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Message",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/chat/messages/:messageId",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"messages",
+										":messageId"
+									],
+									"variable": [
+										{
+											"key": "messageId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Delete a message you sent. Only the sender can delete their own messages."
+							},
+							"response": []
+						},
+						{
+							"name": "Search Messages",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/:conversationId/search?query=vacation&per_page=20",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										":conversationId",
+										"search"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "vacation",
+											"description": "Search term"
+										},
+										{
+											"key": "per_page",
+											"value": "20"
+										}
+									],
+									"variable": [
+										{
+											"key": "conversationId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Search messages within a conversation."
+							},
+							"response": []
+						}
+					],
+					"description": "Endpoints for sending and managing messages"
+				},
+				{
+					"name": "Real-time Actions",
+					"item": [
+						{
+							"name": "Mark Messages as Read",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"message_ids\": [1, 2, 3]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/:conversationId/read",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										":conversationId",
+										"read"
+									],
+									"variable": [
+										{
+											"key": "conversationId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Mark specific messages as read. If message_ids is empty/null, marks all unread messages as read."
+							},
+							"response": []
+						},
+						{
+							"name": "Send Typing Indicator",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"is_typing\": true\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/conversations/:conversationId/typing",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"conversations",
+										":conversationId",
+										"typing"
+									],
+									"variable": [
+										{
+											"key": "conversationId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Send typing indicator to other participants. Set is_typing to false when user stops typing."
+							},
+							"response": []
+						}
+					],
+					"description": "Endpoints for real-time features like typing indicators and read receipts"
+				},
+				{
+					"name": "Media Upload",
+					"item": [
+						{
+							"name": "Upload Media File",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"value": "",
+											"description": "File to upload (max 50MB)",
+											"type": "file"
+										},
+										{
+											"key": "type",
+											"value": "image",
+											"description": "Type: image, video, audio, or file",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/upload",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"upload"
+									]
+								},
+								"description": "Upload a media file for chat messages.\n\nSupported types:\n- image: jpeg, png, gif, webp\n- video: mp4, quicktime, webm, avi\n- audio: mpeg, wav, ogg, webm, mp4\n- file: pdf, doc, docx, xls, xlsx, zip, txt\n\nMax file size: 50MB\n\nReturns metadata to use when sending the message."
+							},
+							"response": []
+						},
+						{
+							"name": "Upload Voice Note",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "audio",
+											"value": "",
+											"description": "Voice note file (max 10MB)",
+											"type": "file"
+										},
+										{
+											"key": "duration",
+											"value": "15",
+											"description": "Duration in seconds",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/chat/upload/voice-note",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chat",
+										"upload",
+										"voice-note"
+									]
+								},
+								"description": "Upload a voice note/voice message.\n\nSupported formats: wav, mp3, m4a, ogg, webm\nMax file size: 10MB\n\nReturns metadata to use when sending the audio message."
+							},
+							"response": []
+						}
+					],
+					"description": "Endpoints for uploading media files for chat messages"
+				},
+				{
+					"name": "Pusher Authentication",
+					"item": [
+						{
+							"name": "Authenticate Private Channel",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "socket_id",
+											"value": "123456.789",
+											"description": "Socket ID from Pusher connection"
+										},
+										{
+											"key": "channel_name",
+											"value": "private-conversation.1",
+											"description": "Channel name to authenticate"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://travelilly.pyshraft.com/api/broadcasting/auth",
+									"protocol": "https",
+									"host": [
+										"travelilly",
+										"pyshraft",
+										"com"
+									],
+									"path": [
+										"api",
+										"broadcasting",
+										"auth"
+									]
+								},
+								"description": "Authenticate a Pusher private or presence channel.\n\nChannel types:\n- private-conversation.{id} - For conversation messages\n- private-user.{id}.conversations - For user's conversation updates\n- presence-online - For online status"
+							},
+							"response": []
+						}
+					],
+					"description": "Pusher channel authentication endpoint"
+				},
+				{
+					"name": "Friendships",
+					"item": [
+						{
+							"name": "Send friend/follow request (auto-detects type)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/friendships/send/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"friendships",
+										"send",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get requests you sent",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/friendships/requests/sent",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"friendships",
+										"requests",
+										"sent"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get followers list",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/friendships/followers",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"friendships",
+										"followers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get following list",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/friendships/following",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"friendships",
+										"following"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Check relationship with a user",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/friendships/status/{{userId}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"friendships",
+										"status",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get following list Copy",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/friendships/following",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"friendships",
+										"following"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get following list Copy",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/friendships/following",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"friendships",
+										"following"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get pending requests received Copy",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/friendships/requests",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"friendships",
+										"requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Accept Friend Request",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/friendships/accept/48",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"friendships",
+										"accept",
+										"48"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reject Friend Request",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/friendships/reject/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"friendships",
+										"reject",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cancel sent request",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/friendships/cancel/{{userId}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"friendships",
+										"cancel",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unfollow",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/friendships/unfollow/{{userId}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"friendships",
+										"unfollow",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Direct follow (for hosts/guides) Copy",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/friendships/follow/{{userId}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"friendships",
+										"follow",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove friend Copy",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/friendships/unfriend/{{userId}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"friendships",
+										"unfriend",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Friends",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/friendships",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"friendships"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "jam_id",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "user_id",
+			"value": "84",
+			"type": "default"
+		},
+		{
+			"key": "task_id",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "bucket_list_id",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "userId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "invitation_id",
+			"value": "1",
+			"type": "default"
+		},
+		{
+			"key": "booking_id",
+			"value": "1",
+			"type": "default"
+		}
+	]
+}

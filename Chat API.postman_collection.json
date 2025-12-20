@@ -1,0 +1,893 @@
+{
+	"info": {
+		"_postman_id": "chat-api-collection-2025",
+		"name": "Travelily Chat API",
+		"description": "Real-time Chat API collection for Travelily application.\n\nFeatures:\n- Personal (1-on-1) chats with friends\n- Jam group chats\n- Media messages (images, videos, audio, files)\n- Voice notes\n- Typing indicators\n- Read receipts\n- Message search",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "app_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"item": [
+		{
+			"name": "Conversations",
+			"item": [
+				{
+					"name": "Get All Conversations",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chat/conversations?type=&per_page=20",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations"],
+							"query": [
+								{
+									"key": "type",
+									"value": "",
+									"description": "Filter by type: 'personal' or 'jam' (leave empty for all)"
+								},
+								{
+									"key": "per_page",
+									"value": "20",
+									"description": "Number of conversations per page"
+								}
+							]
+						},
+						"description": "Get all conversations for the authenticated user. Can filter by type (personal/jam)."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Personal Conversations",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/personal?per_page=20",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", "personal"],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "20"
+								}
+							]
+						},
+						"description": "Get only personal (1-on-1) conversations with friends."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Jam Conversations",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/jam?per_page=20",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", "jam"],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "20"
+								}
+							]
+						},
+						"description": "Get only Jam group conversations."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Conversation Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/:conversationId",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", ":conversationId"],
+							"variable": [
+								{
+									"key": "conversationId",
+									"value": "1",
+									"description": "Conversation ID"
+								}
+							]
+						},
+						"description": "Get details of a specific conversation including participants."
+					},
+					"response": []
+				},
+				{
+					"name": "Start Personal Chat",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/personal/:friendId",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", "personal", ":friendId"],
+							"variable": [
+								{
+									"key": "friendId",
+									"value": "2",
+									"description": "Friend's user ID to start chat with"
+								}
+							]
+						},
+						"description": "Start or get existing personal conversation with a friend."
+					},
+					"response": []
+				},
+				{
+					"name": "Start/Join Jam Chat",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/jam/:jamId",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", "jam", ":jamId"],
+							"variable": [
+								{
+									"key": "jamId",
+									"value": "1",
+									"description": "Jam ID to start/join group chat"
+								}
+							]
+						},
+						"description": "Start or join a Jam group conversation. All Jam members are automatically added as participants."
+					},
+					"response": []
+				},
+				{
+					"name": "Mute/Unmute Conversation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/:conversationId/mute",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", ":conversationId", "mute"],
+							"variable": [
+								{
+									"key": "conversationId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Toggle mute status for a conversation. Muted conversations won't send push notifications."
+					},
+					"response": []
+				},
+				{
+					"name": "Pin/Unpin Conversation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/:conversationId/pin",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", ":conversationId", "pin"],
+							"variable": [
+								{
+									"key": "conversationId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Toggle pin status for a conversation. Pinned conversations appear at the top."
+					},
+					"response": []
+				},
+				{
+					"name": "Leave Conversation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/:conversationId/leave",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", ":conversationId", "leave"],
+							"variable": [
+								{
+									"key": "conversationId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Leave a group conversation. Only applicable for Jam group chats."
+					},
+					"response": []
+				},
+				{
+					"name": "Add Participant to Conversation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/:conversationId/participants",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", ":conversationId", "participants"],
+							"variable": [
+								{
+									"key": "conversationId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Add a new participant to a group conversation."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for managing conversations (personal and Jam group chats)"
+		},
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "Get Messages",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/:conversationId/messages?per_page=50&before_id=",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", ":conversationId", "messages"],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "50",
+									"description": "Number of messages per page"
+								},
+								{
+									"key": "before_id",
+									"value": "",
+									"description": "Load messages before this message ID (for pagination)"
+								}
+							],
+							"variable": [
+								{
+									"key": "conversationId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Get messages in a conversation. Use before_id for infinite scroll pagination."
+					},
+					"response": []
+				},
+				{
+					"name": "Send Text Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"text\",\n    \"body\": \"Hey, long time no see! 👋\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/:conversationId/messages",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", ":conversationId", "messages"],
+							"variable": [
+								{
+									"key": "conversationId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Send a text message to a conversation."
+					},
+					"response": []
+				},
+				{
+					"name": "Send Image Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"image\",\n    \"body\": \"Check out this view!\",\n    \"metadata\": {\n        \"url\": \"https://example.com/uploads/chat/images/photo.jpg\",\n        \"filename\": \"vacation_photo.jpg\",\n        \"filesize\": 1024000,\n        \"mimetype\": \"image/jpeg\",\n        \"width\": 1920,\n        \"height\": 1080\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/:conversationId/messages",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", ":conversationId", "messages"],
+							"variable": [
+								{
+									"key": "conversationId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Send an image message. First upload the image using /chat/upload endpoint, then send the metadata."
+					},
+					"response": []
+				},
+				{
+					"name": "Send Video Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"video\",\n    \"body\": \"Video from the trip\",\n    \"metadata\": {\n        \"url\": \"https://example.com/uploads/chat/videos/video.mp4\",\n        \"filename\": \"trip_video.mp4\",\n        \"filesize\": 15000000,\n        \"mimetype\": \"video/mp4\",\n        \"duration\": 45,\n        \"thumbnail\": \"https://example.com/uploads/chat/videos/video_thumb.jpg\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/:conversationId/messages",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", ":conversationId", "messages"],
+							"variable": [
+								{
+									"key": "conversationId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Send a video message with duration and optional thumbnail."
+					},
+					"response": []
+				},
+				{
+					"name": "Send Audio/Voice Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"audio\",\n    \"metadata\": {\n        \"url\": \"https://example.com/uploads/chat/voice-notes/audio.m4a\",\n        \"filename\": \"voice_note.m4a\",\n        \"filesize\": 250000,\n        \"mimetype\": \"audio/mp4\",\n        \"duration\": 15,\n        \"is_voice_note\": true\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/:conversationId/messages",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", ":conversationId", "messages"],
+							"variable": [
+								{
+									"key": "conversationId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Send an audio or voice note message."
+					},
+					"response": []
+				},
+				{
+					"name": "Send File Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"file\",\n    \"body\": \"Here's the itinerary\",\n    \"metadata\": {\n        \"url\": \"https://example.com/uploads/chat/files/itinerary.pdf\",\n        \"filename\": \"Trip_Itinerary.pdf\",\n        \"filesize\": 500000,\n        \"mimetype\": \"application/pdf\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/:conversationId/messages",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", ":conversationId", "messages"],
+							"variable": [
+								{
+									"key": "conversationId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Send a file attachment (PDF, DOC, XLS, etc.)."
+					},
+					"response": []
+				},
+				{
+					"name": "Send Location Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"location\",\n    \"body\": \"I'm here!\",\n    \"metadata\": {\n        \"latitude\": 48.8584,\n        \"longitude\": 2.2945,\n        \"address\": \"Eiffel Tower, Champ de Mars, 5 Av. Anatole France, 75007 Paris, France\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/:conversationId/messages",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", ":conversationId", "messages"],
+							"variable": [
+								{
+									"key": "conversationId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Send a location message with coordinates and optional address."
+					},
+					"response": []
+				},
+				{
+					"name": "Reply to Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"text\",\n    \"body\": \"Yes, I'll be there!\",\n    \"reply_to_id\": 5\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/:conversationId/messages",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", ":conversationId", "messages"],
+							"variable": [
+								{
+									"key": "conversationId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Reply to a specific message using reply_to_id."
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Message",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"body\": \"Updated message content\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/chat/messages/:messageId",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "messages", ":messageId"],
+							"variable": [
+								{
+									"key": "messageId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Edit a message you sent. Only the sender can edit their own messages."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Message",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chat/messages/:messageId",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "messages", ":messageId"],
+							"variable": [
+								{
+									"key": "messageId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Delete a message you sent. Only the sender can delete their own messages."
+					},
+					"response": []
+				},
+				{
+					"name": "Search Messages",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/:conversationId/search?query=vacation&per_page=20",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", ":conversationId", "search"],
+							"query": [
+								{
+									"key": "query",
+									"value": "vacation",
+									"description": "Search term"
+								},
+								{
+									"key": "per_page",
+									"value": "20"
+								}
+							],
+							"variable": [
+								{
+									"key": "conversationId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Search messages within a conversation."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for sending and managing messages"
+		},
+		{
+			"name": "Real-time Actions",
+			"item": [
+				{
+					"name": "Mark Messages as Read",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message_ids\": [1, 2, 3]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/:conversationId/read",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", ":conversationId", "read"],
+							"variable": [
+								{
+									"key": "conversationId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Mark specific messages as read. If message_ids is empty/null, marks all unread messages as read."
+					},
+					"response": []
+				},
+				{
+					"name": "Send Typing Indicator",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"is_typing\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/chat/conversations/:conversationId/typing",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "conversations", ":conversationId", "typing"],
+							"variable": [
+								{
+									"key": "conversationId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Send typing indicator to other participants. Set is_typing to false when user stops typing."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for real-time features like typing indicators and read receipts"
+		},
+		{
+			"name": "Media Upload",
+			"item": [
+				{
+					"name": "Upload Media File",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "",
+									"description": "File to upload (max 50MB)"
+								},
+								{
+									"key": "type",
+									"value": "image",
+									"type": "text",
+									"description": "Type: image, video, audio, or file"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/chat/upload",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "upload"]
+						},
+						"description": "Upload a media file for chat messages.\n\nSupported types:\n- image: jpeg, png, gif, webp\n- video: mp4, quicktime, webm, avi\n- audio: mpeg, wav, ogg, webm, mp4\n- file: pdf, doc, docx, xls, xlsx, zip, txt\n\nMax file size: 50MB\n\nReturns metadata to use when sending the message."
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Voice Note",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "audio",
+									"type": "file",
+									"src": "",
+									"description": "Voice note file (max 10MB)"
+								},
+								{
+									"key": "duration",
+									"value": "15",
+									"type": "text",
+									"description": "Duration in seconds"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/chat/upload/voice-note",
+							"host": ["{{base_url}}"],
+							"path": ["chat", "upload", "voice-note"]
+						},
+						"description": "Upload a voice note/voice message.\n\nSupported formats: wav, mp3, m4a, ogg, webm\nMax file size: 10MB\n\nReturns metadata to use when sending the audio message."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for uploading media files for chat messages"
+		},
+		{
+			"name": "Pusher Authentication",
+			"item": [
+				{
+					"name": "Authenticate Private Channel",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "socket_id",
+									"value": "123456.789",
+									"description": "Socket ID from Pusher connection"
+								},
+								{
+									"key": "channel_name",
+									"value": "private-conversation.1",
+									"description": "Channel name to authenticate"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/../broadcasting/auth",
+							"host": ["{{base_url}}"],
+							"path": ["..", "broadcasting", "auth"]
+						},
+						"description": "Authenticate a Pusher private or presence channel.\n\nChannel types:\n- private-conversation.{id} - For conversation messages\n- private-user.{id}.conversations - For user's conversation updates\n- presence-online - For online status"
+					},
+					"response": []
+				}
+			],
+			"description": "Pusher channel authentication endpoint"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [""]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [""]
+			}
+		}
+	]
+}
