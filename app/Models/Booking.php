@@ -8,7 +8,10 @@ class Booking extends Model
 {
     protected $fillable = ['bookable_type', 'bookable_id', 'host_id', 'guest_id', 'start_date', 'end_date', 'num_people', 'total_price', 'status'];
 
-    protected $dates = ['start_date', 'end_date'];
+    protected $casts = [
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
+    ];
 
     protected static function boot()
     {
