@@ -17,10 +17,21 @@ use App\Http\Controllers\Api\V1\MapController;
 use App\Http\Controllers\Api\V1\PostCommentController;
 use App\Http\Controllers\Api\V1\PostController;
 use App\Http\Controllers\Api\V1\SocialLoginController;
+use App\Http\Controllers\Api\V1\StoryController;
 use App\Http\Controllers\Api\V1\TaskController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\UserMediaController;
 use App\Http\Controllers\Api\V1\UserPlaceController;
+use App\Http\Controllers\Api\V1\ExpenseController;
+use App\Http\Controllers\Api\V1\LocationController;
+use App\Http\Controllers\Api\V1\AdvertisementController;
+use App\Http\Controllers\Api\V1\ExperienceController;
+use App\Http\Controllers\Api\V1\ReviewController;
+use App\Http\Controllers\Api\V1\WalletController;
+use App\Http\Controllers\Api\V1\ReportController;
+use App\Http\Controllers\Api\V1\ListingController;
+use App\Http\Controllers\Api\V1\CalendarController;
+use App\Http\Controllers\Api\V1\SearchController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\SubscriptionController;
@@ -172,6 +183,72 @@ Route::prefix('v1')->group(function () {
         Route::get('/plans', [PlanController::class, 'index']);
         Route::post('/subscribe', [SubscriptionController::class, 'subscribe']);
         Route::get('/subscription', [SubscriptionController::class, 'getCurrentSubscription']);
+
+        // Expense & Budget Routes
+        Route::post('/jams/{jamId}/expenses', [ExpenseController::class, 'store']);
+        Route::get('/jams/{jamId}/budget', [ExpenseController::class, 'getBudget']);
+        Route::put('/expenses/{expenseId}', [ExpenseController::class, 'update']);
+        Route::delete('/expenses/{expenseId}', [ExpenseController::class, 'destroy']);
+        Route::patch('/jams/{jamId}/budget', [ExpenseController::class, 'updateBudget']);
+
+        // Stories Routes
+        Route::get('/stories', [StoryController::class, 'index']);
+        Route::post('/stories', [StoryController::class, 'store']);
+
+        // Location Search
+        Route::get('/locations/search', [LocationController::class, 'search']);
+
+        // Post Likes & Comments
+        Route::get('/posts/{postId}/likes', [PostController::class, 'getLikes']);
+        Route::get('/posts/{postId}/comments', [PostController::class, 'getComments']);
+
+        // Advertisements
+        Route::get('/advertisements', [AdvertisementController::class, 'index']);
+        Route::post('/advertisements', [AdvertisementController::class, 'store']);
+
+        // Experiences (Tours)
+        Route::get('/experiences', [ExperienceController::class, 'index']);
+        Route::post('/experiences', [ExperienceController::class, 'store']);
+        Route::get('/experiences/{id}', [ExperienceController::class, 'show']);
+        Route::get('/users/{userId}/experiences', [ExperienceController::class, 'getUserExperiences']);
+
+        // Reviews
+        Route::post('/reviews', [ReviewController::class, 'store']);
+        Route::get('/users/{userId}/reviews', [ReviewController::class, 'getUserReviews']);
+        Route::get('/tours/{tourId}/reviews', [ReviewController::class, 'getTourReviews']);
+
+        // Wallet
+        Route::get('/wallet/balance', [WalletController::class, 'getBalance']);
+
+        // Reports
+        Route::post('/reports', [ReportController::class, 'store']);
+
+        // Listings (Host)
+        Route::get('/listings/my', [ListingController::class, 'myListings']);
+        Route::post('/listings', [ListingController::class, 'store']);
+        Route::get('/host/bookings', [ListingController::class, 'getHostBookings']);
+
+        // Calendar & Schedule
+        Route::get('/jams/{jamId}/calendar', [CalendarController::class, 'getJamCalendar']);
+        Route::get('/jams/{jamId}/schedule', [CalendarController::class, 'getSchedule']);
+
+        // Search Routes
+        Route::get('/search/global', [SearchController::class, 'globalSearch']);
+        Route::get('/jams/{jamId}/users/search', [SearchController::class, 'searchJamUsers']);
+        Route::get('/friends/search', [SearchController::class, 'searchFriends']);
+        Route::get('/guides/search', [SearchController::class, 'searchGuides']);
+
+        // Friendship Suggestions
+        Route::get('/friendships/suggestions', [FriendshipController::class, 'getSuggestions']);
+
+        // Jam User Management
+        Route::delete('/jams/{jamId}/users/{userId}', [JamUserController::class, 'removeUser']);
+        Route::get('/jams/{jamId}/users/removed', [JamUserController::class, 'getRemovedUsers']);
+
+        // User Profile Extensions
+        Route::post('/profile/video', [UserMediaController::class, 'uploadVideo']);
+        Route::delete('/profile/video', [UserMediaController::class, 'deleteVideo']);
+        Route::delete('/profile/gallery/{mediaId}', [UserMediaController::class, 'deleteGalleryItem']);
     });
 });
 

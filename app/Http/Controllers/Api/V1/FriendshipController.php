@@ -164,4 +164,26 @@ class FriendshipController extends Controller
         $status = $this->friendshipService->getRelationshipStatus($targetUserId);
         return API::success($status, 'Relationship status retrieved');
     }
+
+    public function getSuggestions()
+    {
+        $userId = auth()->id();
+        
+        // Get users with mutual friends or similar interests
+        $suggestions = \DB::table('users')
+            ->select('users.id', 'users.name', 'users.email')
+            ->where('users.id', '!=', $userId)
+            ->whereNotExists(function($query) use ($userId) {
+                $query->select(\DB::raw(1))
+                    ->from('friendships')
+                    ->where(function($q) use ($userId) {
+                        $q->where('user_id', $userId)
+                          ->orWhere('friend_id', $userId);
+                    });
+            })
+            ->limit(20)
+            ->get();
+
+        return API::success($suggestions, 'Friend suggestions retrieved');
+    }
 }

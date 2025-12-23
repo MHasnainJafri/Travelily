@@ -32,5 +32,44 @@ class JamUserController extends Controller
             return response()->json(['error' => $e->getMessage()], 400);
         }
     }
+
+    public function removeUser($jamId, $userId)
+    {
+        try {
+            \DB::table('jam_users')
+                ->where('jam_id', $jamId)
+                ->where('user_id', $userId)
+                ->update([
+                    'status' => 'removed',
+                    'updated_at' => now()
+                ]);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User removed from jam successfully'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    public function getRemovedUsers($jamId)
+    {
+        try {
+            $removedUsers = \DB::table('jam_users')
+                ->where('jam_id', $jamId)
+                ->where('status', 'removed')
+                ->join('users', 'jam_users.user_id', '=', 'users.id')
+                ->select('users.id', 'users.name', 'users.email', 'jam_users.updated_at as removed_at')
+                ->get();
+
+            return response()->json([
+                'status' => true,
+                'data' => $removedUsers
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
     
 }

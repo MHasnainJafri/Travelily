@@ -103,4 +103,69 @@ class PostController extends Controller
 
         return response()->json(['message' => 'Post deleted successfully'], 200);
     }
+
+    public function getLikes($postId)
+    {
+        $likes = \DB::table('post_likes')
+            ->where('post_id', $postId)
+            ->join('users', 'post_likes.user_id', '=', 'users.id')
+            ->select('users.id as user_id', 'users.name', 'users.email')
+            ->get();
+
+        $likesWithFollowStatus = $likes->map(function($user) {
+            $isFollowing = \DB::table('friendships')
+                ->where(function($q) use ($user) {
+                    $q->where('user_id', auth()->id())->where('friend_id', $user->user_id);
+                })
+                ->orWhere(function($q) use ($user) {
+                    $q->where('user_id', $user->user_id)->where('friend_id', auth()->id());
+                })
+                ->where('type', 'follow')
+                ->exists();
+
+            return [
+                'user_id' => $user->user_id,
+                'name' => $user->name,
+                'is_following' => $isFollowing
+            ];
+        });
+
+        return response()->json([
+            'status' => true,
+            'data' => $likesWithFollowStatus
+        ]);
+    }
+
+    public function getComments($postId)
+    {
+        $comments = \DB::table('post_comments')
+            ->where('post_id', $postId)
+            ->whereNull('parent_id')
+            ->join('users', 'post_comments.user_id', '=', 'users.id')
+            ->select('post_comments.*', 'users.name as user_name')
+            ->orderBy('post_comments.created_at', 'desc')
+            ->get();
+
+        $commentsWithReplies = $comments->map(function($comment) use ($postId) {
+            $replies = \DB::table('post_comments')
+                ->where('post_id', $postId)
+                ->where('parent_id', $comment->id)
+                ->join('users', 'post_comments.user_id', '=', 'users.id')
+                ->select('post_comments.*', 'users.name as user_name')
+                ->get();
+
+            return [
+                'id' => $comment->id,
+                'user' => $comment->user_name,
+                'content' => $comment->comment,
+                'created_at' => $comment->created_at,
+                'replies' => $replies
+            ];
+        });
+
+        return response()->json([
+            'status' => true,
+            'data' => $commentsWithReplies
+        ]);
+    }
 }

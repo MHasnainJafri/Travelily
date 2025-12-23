@@ -1,0 +1,969 @@
+{
+	"info": {
+		"name": "Travelily - Missing APIs Collection",
+		"description": "Comprehensive collection of all missing APIs implemented for Travelily application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Trip Budget & Expenses",
+			"item": [
+				{
+					"name": "Add Expense",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Group Dinner at Jimbaran\",\n  \"amount\": 120.50,\n  \"currency\": \"USD\",\n  \"category\": \"food\",\n  \"date\": \"2024-06-16\",\n  \"paid_by_user_id\": 5,\n  \"split_with\": [2, 5, 8]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/jams/{{jamId}}/expenses",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "jams", "{{jamId}}", "expenses"]
+						}
+					}
+				},
+				{
+					"name": "Get Budget Overview",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/jams/{{jamId}}/budget",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "jams", "{{jamId}}", "budget"]
+						}
+					}
+				},
+				{
+					"name": "Update Expense",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"amount\": 130.00,\n  \"title\": \"Group Dinner (with drinks)\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/expenses/{{expenseId}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "expenses", "{{expenseId}}"]
+						}
+					}
+				},
+				{
+					"name": "Delete Expense",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/expenses/{{expenseId}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "expenses", "{{expenseId}}"]
+						}
+					}
+				},
+				{
+					"name": "Update Budget Slider",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"budget_min\": 100,\n  \"budget_max\": 2500\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/jams/{{jamId}}/budget",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "jams", "{{jamId}}", "budget"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Jam Invitations & Permissions",
+			"item": [
+				{
+					"name": "Get Pending Jam Invitations",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/invitations/received",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "invitations", "received"]
+						}
+					}
+				},
+				{
+					"name": "Invite with Permissions",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_ids\": [2, 5],\n  \"permissions\": {\n    \"can_edit_jamboard\": true,\n    \"can_add_travelers\": false,\n    \"can_edit_budget\": true,\n    \"can_add_destinations\": false\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/jams/{{jamId}}/invitations",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "jams", "{{jamId}}", "invitations"]
+						}
+					}
+				},
+				{
+					"name": "Remove User from Jam",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/jams/{{jamId}}/users/{{userId}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "jams", "{{jamId}}", "users", "{{userId}}"]
+						}
+					}
+				},
+				{
+					"name": "Get Removed Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/jams/{{jamId}}/users/removed",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "jams", "{{jamId}}", "users", "removed"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Calendar & Schedule",
+			"item": [
+				{
+					"name": "Trip Calendar Timeline",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/jams/{{jamId}}/calendar",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "jams", "{{jamId}}", "calendar"]
+						}
+					}
+				},
+				{
+					"name": "Get Jam Schedule",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/jams/{{jamId}}/schedule",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "jams", "{{jamId}}", "schedule"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Stories",
+			"item": [
+				{
+					"name": "Get Active Stories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/stories",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "stories"]
+						}
+					}
+				},
+				{
+					"name": "Upload Story",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "media",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "content",
+									"value": "My story caption",
+									"type": "text"
+								},
+								{
+									"key": "visibility",
+									"value": "friends",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/stories",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "stories"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Posts - Likes & Comments",
+			"item": [
+				{
+					"name": "Get Post Likes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/posts/{{postId}}/likes",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "posts", "{{postId}}", "likes"]
+						}
+					}
+				},
+				{
+					"name": "Get Post Comments (Threaded)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/posts/{{postId}}/comments",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "posts", "{{postId}}", "comments"]
+						}
+					}
+				},
+				{
+					"name": "Location Search (for Check-in)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/locations/search?query=Park+View",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "locations", "search"],
+							"query": [
+								{
+									"key": "query",
+									"value": "Park+View"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Advertisements",
+			"item": [
+				{
+					"name": "Create Advertisement",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Museum with your friends\",\n  \"duration_days\": 10,\n  \"locations\": [\"Paris\", \"London\"],\n  \"target_audience\": {\n    \"age_range\": [18, 35],\n    \"gender\": [\"male\", \"female\"],\n    \"interests\": [\"Relaxation\", \"Nature\"]\n  },\n  \"payment_method_id\": \"pm_12345\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/advertisements",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "advertisements"]
+						}
+					}
+				},
+				{
+					"name": "Get My Advertisements",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/advertisements",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "advertisements"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Experiences (Tours)",
+			"item": [
+				{
+					"name": "Create Experience",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Louvre Museum Tour\",\n  \"description\": \"Skip the line...\",\n  \"location\": \"Paris, France\",\n  \"start_date\": \"2023-08-17\",\n  \"end_date\": \"2023-08-23\",\n  \"min_price\": 0,\n  \"max_price\": 15\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/experiences",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "experiences"]
+						}
+					}
+				},
+				{
+					"name": "Get My Experiences",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/experiences",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "experiences"]
+						}
+					}
+				},
+				{
+					"name": "Get Experience Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/experiences/{{experienceId}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "experiences", "{{experienceId}}"]
+						}
+					}
+				},
+				{
+					"name": "Get User Experiences (Profile)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/{{userId}}/experiences",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "users", "{{userId}}", "experiences"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "Submit Review",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"reviewed_user_id\": 5,\n  \"rating\": 5,\n  \"comment\": \"Great guide!\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/reviews",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "reviews"]
+						}
+					}
+				},
+				{
+					"name": "Get User Reviews",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/{{userId}}/reviews?sort=newest",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "users", "{{userId}}", "reviews"],
+							"query": [
+								{
+									"key": "sort",
+									"value": "newest"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Tour Reviews",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/tours/{{tourId}}/reviews?sort=top_rated",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "tours", "{{tourId}}", "reviews"],
+							"query": [
+								{
+									"key": "sort",
+									"value": "top_rated"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Host & Listings",
+			"item": [
+				{
+					"name": "Create Listing",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Liverpool Street Apartment\",\n  \"description\": \"Cozy apartment\",\n  \"location\": \"Liverpool, UK\",\n  \"amenities\": [1, 4, 8],\n  \"house_rules\": [2, 5],\n  \"max_guests\": 6,\n  \"price_per_night\": 200,\n  \"num_rooms\": 3,\n  \"min_stay_days\": 2\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/listings",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "listings"]
+						}
+					}
+				},
+				{
+					"name": "Get My Listings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/listings/my",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "listings", "my"]
+						}
+					}
+				},
+				{
+					"name": "Get Host Bookings",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/host/bookings?status=pending",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "host", "bookings"],
+							"query": [
+								{
+									"key": "status",
+									"value": "pending"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Wallet & Income",
+			"item": [
+				{
+					"name": "Get Wallet Balance",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/wallet/balance",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "wallet", "balance"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Reports & Safety",
+			"item": [
+				{
+					"name": "Submit Report",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"target_type\": \"tour\",\n  \"target_id\": 101,\n  \"reason\": \"fraud\",\n  \"description\": \"This listing is fake\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/reports",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "reports"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Search",
+			"item": [
+				{
+					"name": "Global Search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/search/global?query=bali",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "search", "global"],
+							"query": [
+								{
+									"key": "query",
+									"value": "bali"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search Jam Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/jams/{{jamId}}/users/search?query=john",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "jams", "{{jamId}}", "users", "search"],
+							"query": [
+								{
+									"key": "query",
+									"value": "john"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search Friends",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/friends/search?query=sarah",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "friends", "search"],
+							"query": [
+								{
+									"key": "query",
+									"value": "sarah"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search Guides",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/guides/search?query=maria",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "guides", "search"],
+							"query": [
+								{
+									"key": "query",
+									"value": "maria"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Friendship",
+			"item": [
+				{
+					"name": "Get Friend Suggestions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/friendships/suggestions",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "friendships", "suggestions"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "User Profile Extensions",
+			"item": [
+				{
+					"name": "Upload Short Video",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "video",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/profile/video",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "profile", "video"]
+						}
+					}
+				},
+				{
+					"name": "Delete Short Video",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/profile/video",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "profile", "video"]
+						}
+					}
+				},
+				{
+					"name": "Delete Gallery Item",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/profile/gallery/{{mediaId}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "profile", "gallery", "{{mediaId}}"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "jamId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "postId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "expenseId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "experienceId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "tourId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "mediaId",
+			"value": "1",
+			"type": "string"
+		}
+	]
+}

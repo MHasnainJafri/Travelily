@@ -38,4 +38,89 @@ class UserMediaController extends Controller
             return response()->json(['error' => $e->getMessage()], 400);
         }
     }
+
+    public function uploadVideo(Request $request)
+    {
+        $request->validate([
+            'video' => 'required|mimes:mp4,mov,avi,wmv|max:51200', // Max 50MB
+        ]);
+
+        try {
+            $user = Auth::user();
+            
+            // Remove old video if exists
+            $user->clearMediaCollection('short_video');
+            
+            // Add new video
+            $media = $user->addMedia($request->file('video'))
+                          ->toMediaCollection('short_video', 'public');
+
+            // Update profile with video URL
+            \DB::table('user_profiles')
+                ->where('user_id', $user->id)
+                ->update([
+                    'short_video' => $media->getUrl(),
+                    'updated_at' => now()
+                ]);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Short video uploaded successfully',
+                'video_url' => $media->getUrl()
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    public function deleteVideo()
+    {
+        try {
+            $user = Auth::user();
+            
+            // Clear video collection
+            $user->clearMediaCollection('short_video');
+            
+            // Clear from profile
+            \DB::table('user_profiles')
+                ->where('user_id', $user->id)
+                ->update([
+                    'short_video' => null,
+                    'updated_at' => now()
+                ]);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Short video deleted successfully'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    public function deleteGalleryItem($mediaId)
+    {
+        try {
+            $user = Auth::user();
+            
+            // Find and delete the specific media item
+            $media = $user->getMedia('gallery')->where('id', $mediaId)->first();
+            
+            if (!$media) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Media not found'
+                ], 404);
+            }
+            
+            $media->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Gallery item deleted successfully'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
 }
